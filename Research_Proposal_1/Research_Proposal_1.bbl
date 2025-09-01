@@ -16,29 +16,5 @@
   {}
 \endgroup
 
-\datalist[entry]{nyt/global//global/global/global}
-  \entry{example2020}{article}{}{}
-    \name{author}{1}{}{%
-      {{hash=SJ}{%
-         family={Smith},
-         familyi={S\bibinitperiod},
-         given={John},
-         giveni={J\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{SJ1}
-    \strng{fullhash}{SJ1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelyear}{2020}
-    \field{labeldatesource}{}
-    \field{sortinit}{S}
-    \field{sortinithash}{S}
-    \field{pages}{1\bibrangedash 10}
-    \field{title}{Example Article for Bibliography}
-    \field{volume}{1}
-    \field{journaltitle}{Journal of Economic Examples}
-    \field{year}{2020}
-  \endentry
-\enddatalist
+\datalist[entry]{nyt/global//global/global/global}\enddatalist
 \endinput
