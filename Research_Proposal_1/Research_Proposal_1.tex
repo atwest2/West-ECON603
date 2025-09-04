@@ -11,12 +11,11 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 
+% Bibliography support
+\usepackage[authoryear]{natbib}
+
 \usepackage{geometry}
 \geometry{margin=1in}
-
-% Bibliography support
-\usepackage[backend=bibtex,style=authoryear]{biblatex}
-\addbibresource{references.bib}
 
 % Theorem environments
 \newtheorem{theorem}{Theorem}
@@ -31,28 +30,19 @@
 \author{Austyn West}
 \date{\today}
 
-
 \begin{document}
 \maketitle
 
-
 \section*{Research Question}
-What is the the effect of coal-industry decline on intergenerational mobility in Appalachia?
-
-Appalachia has long been associated with the coal industry making a large part of this region reliant 
-on predominantly one industry. Beginning in the 1980s, the first significant decline of the coal industry began.
-After the turn of the century the coal industry has seen a more rapid decline due to a combination of increased competition
-with natural gas, automation, and environmental regulations. 
+How does parental opioid exposure (e.g., misuse, overdose, incarceration) affect children’s educational outcomes (e.g., attendance, test scores, graduation) in Appalachian schools? 
+See \citep{caseRisingMorbidityMortality2015} for related findings.
 
 \section*{Economic Framework and Empirical Design}
-% Summarize relevant literature.
 
 \section*{Data}
-% Present your economic model and mathematical formulation.
-
 
 \section*{References}
-% To cite: \cite{example2020}
-%\printbibliography
+\bibliographystyle{chicago} % or plainnat, apalike, etc.
+\bibliography{Bibliography} % your .bib file
 
 \end{document}
