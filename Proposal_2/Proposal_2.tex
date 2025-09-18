@@ -1,21 +1,24 @@
 \input{preamble}
+
 % Title
 \begin{document}
 \begin{singlespace}
 \title{Proposal 2}
-\author{Austyn West\thanks{Department of Economics, Texas A\&M University.} }
+\author{Austyn West\thanks{Department of Economics, Texas A\&M University.}}
 \date{September 18, 2025}
 \maketitle
 \end{singlespace}
 
-\textbf{Research Question.} 
+\textbf{Research Question.} Rural U.S. communities face escalating flood risks, which threaten household wealth and economic stability, particularly in areas with thin insurance markets and low coverage uptake. This proposal investigaes the welfare implications of two key flood risk policies: ex-ante NFIP subsidies, delivered through FEMA’s Community Rating System (CRS) which offers premium discounts for community-level mitigation \citep{CommunityRatingSystem2020}, and ex-post federal disaster relief, such as FEMA Individual Assistance grants. Prior work suggests that these approaches differ in effectiveness: for example, \citet{Davlasheridze2017} find that FEMA’s ex-ante mitigation measures reduce hurricane damages by 0.21\% per 1\% spending increase, compared to 0.12\% for ex-post recovery efforts. However, existing studies largely focus on aggregate losses rather than household-level outcomes in rural contexts. This proposal asks: What are the effects of ex-ante flood insurance subsidies versus ex-post disaster relief on household welfare and NFIP participation in rural communities? By examining CRS-driven NFIP subsidies and their impact on household welfare and insurance behavior, this study extends prior research and addresses gaps in causal evidence under rising flood risks.
 
-\textbf{Economic Framework.} 
+\textbf{Economic Framework.} In rural communities, households decide whether to purchase flood insurance or rely on post-disaster relief, balancing financial constraints, risk perceptions, and expected losses. Ex-ante subsidies, such as NFIP premium discounts through FEMA’s Community Rating System, lower the cost of insurance, encouraging uptake and possibly increasing resilience by protecting household consumption before floods occur. In contrast, ex-post federal disaster relief, like FEMA grants, provides recovery support after floods but may discourage insurance uptake due to moral hazard \citep{Kousky2018}, as households anticipate aid without paying premiums. Household welfare depends on income, insurance costs, flood losses, and access to relief, with resilience defined as the ability to maintain consumption post-disaster. Community-level factors, such as local mitigation efforts and insurance market conditions, further influence these decisions, highlighting trade-offs between proactive subsidies and reactive aid in promoting economic stability.
 
-\textbf{Empirical Design.} 
 
-\textbf{Data.} 
+\textbf{Empirical Design.} A staggered difference-in-differences (DiD) framework would be used to estimate the causal impact of CRS subsidies versus disaster relief on household welfare and NFIP participation in rural counties. Treatment counties participate in CRS, receiving premium discounts for exceeding NFIP mitigation standards. Control counties are non-CRS rural counties. Propensity score matching (PSM) balances counties on flood risk, income, and population density to address selection bias in CRS adoption. Outcomes include NFIP uptake rates, claim amounts, FEMA aid received, and a welfare proxy such as disposable income net of premiums/losses, adjusted for aid.
+
+\textbf{Data.} The study combines multiple data sources from 2000–2019 to construct a county-level panel for rural U.S. communities. NFIP participation, premiums, and claims data will be sourced from FEMA’s OpenFEMA datasets, including policy and loss records. CRS participation and discount levels will be drawn from FEMA’s community ratings data. Flood exposure measures, including event frequency and damage estimates, would come from NOAA’s storm event database. Federal disaster relief data, such as FEMA Individual Assistance grants, will be obtained from FEMA disaster declarations. Household- and county-level socioeconomic characteristics, including income, property values, and demographics, will be sourced from the U.S. Census Bureau and/or American Community Survey (ACS). FIPS codes will link datasets, with spatial aggregation to ensure compatibility.
 
 \bibliographystyle{chicago}
-\bibliography{Bibliography} 
+\bibliography{Bibliography}
+
 \end{document}
