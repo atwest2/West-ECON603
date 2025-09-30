@@ -1,0 +1,27 @@
+\input{preamble}
+
+% Title
+\begin{document}
+\begin{singlespace}
+\title{Proposal 3}
+\author{Austyn West\thanks{Department of Economics, Texas A\&M University.}}
+\date{October 2, 2025}
+\maketitle
+\end{singlespace}
+
+\textbf{Research Question.}  The 2014 E-Rate modernization order increased rural broadband and infrastructure funding by 60\%, from \$2.4 to \$3.9 billion annually \citep{federalcommunicationscommisionSummarySecondERate}. In rural Appalachia, 86.2\% of households had broadband compared to 89.7\% nationally, and 116 counties remained below 80\% as of 2023 \citep{srygleyAPPALACHIANREGIONDATA}. Evidence on broadband’s educational impact is mixed. For example, \cite{hazlettEducationalImpactBroadband2019} found no E-Rate effect on SAT scores in North Carolina from 2000–2013 (pre-modernization), citing limited broadband focus at the time. Similarly, \cite{boeriHighSpeedBroadbandSchool2023} found no significant broadband effect on Italian student performance (2012–2019), though there is socioeconomic heterogeneity. This proposal asks: What is the effect of the 2014 E-Rate reforms on educational attainment such as graduation, college enrollment, and earnings in rural Appalachia? Given the region’s low broadband and computer access alongside low educational outcomes, the research will provide insight on post-modernization investments in human capital.
+
+\textbf{Economic Framework.} The expectation is that the post-2014 E-Rate shift to high-speed broadband (labeled category 1) and internal infrastructure (labeled category 2, e.g., Wi-Fi) reduces barriers, enhancing educational and economic outcomes. As stated above, Appalachia is below the national average in terms of connectivity and broadband access. Improved school digital infrastructure may boost graduation rates through online learning and college applications. \cite{dettlingEveryLittleBit2015} found that students in zip codes with broadband outperform their academic peers in zip codes without broadband by an average of 0.7 SAT point.\footnote{Equivalent to 0.3 percent of a standard deviation.} The model would show diminishing returns or larger gains in low-connectivity areas, but selection bias emerges, as high-poverty counties can receive discounts (up to 90\%)\footnote{Discount rates are based on the percentage of students eligible for the National School Lunch Program. See the FCC’s E-Rate discount matrix: \url{https://www.usac.org/wp-content/uploads/e-rate/documents/samples/Discount-Matrix.pdf}.} leading to self-selection for funding.  
+
+\textbf{Empirical Design.} A difference-in-differences (DiD) model estimates the 2014 E-Rate reform’s impact on rural Appalachian counties from 2010–2019, comparing high-funded (above-median \$ per pupil, Category 1 and 2) vs. low-funded counties. The model takes the general form:
+\[
+Y_{it} = \beta_0 + \beta_1 \text{HighFund}_i \times \text{Post2014}_t + \beta_2 X_{it} + \mu_i + \tau_t + \epsilon_{it},
+\]
+where $Y_{it}$ = graduation rates, college enrollment, or earnings; $\text{HighFund}_i$ = 1 for above-median funding; $\text{Post2014}_t$ = 1 for 2015$+$; $X_{it}$ = controls (poverty, teacher ratio); $\mu_i, \tau_t$ = county and year fixed effects. Parallel trends are tested using 2010–2013 data to ensure pre-modernization similarity. To address the selection problem noted above, an instrumental variables (IV) strategy would use FCC discount rates which are driven by exogenous eligibility for the National School Lunch Program as an instrument for actual funding received. 
+
+\textbf{Data.} Data are publicly available: E-Rate funding (USAC, 2010–2019), graduation rates (NCES CCD), college enrollment (ACS 5-year estimates), earnings (Opportunity Atlas), and ARC county data. County-year observations from 2010–2019, supporting DiD with pre- and post-modernization periods. Focus is on the 116 counties below 80\% broadband (ARC 2019), consistent with low-connectivity emphasis in the framework. Key measures include E-Rate funding (\$ per pupil), graduation rates, college enrollment, earnings, and controls (poverty, teacher ratio). Missing data include student-level broadband access and school-level Wi-Fi adoption, which may require USAC sub-datasets or FCC surveys.
+
+\bibliographystyle{chicago}
+\bibliography{Bibliography}
+
+\end{document}
