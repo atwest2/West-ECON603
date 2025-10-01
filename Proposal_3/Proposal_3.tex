@@ -13,13 +13,19 @@
 
 \textbf{Economic Framework.} The expectation is that the post-2014 E-Rate shift to high-speed broadband (labeled category 1) and internal infrastructure (labeled category 2, e.g., Wi-Fi) reduces barriers, enhancing educational and economic outcomes. Improved school digital infrastructure may boost graduation rates through online learning and college applications. \cite{dettlingEveryLittleBit2015} found that students in zip codes with broadband outperform their academic peers in zip codes without broadband by an average of 0.7 SAT point.\footnote{Equivalent to 0.3 percent of a standard deviation.} The model would show diminishing returns or larger gains in low-connectivity areas, but selection bias emerges, as high-poverty counties can receive discounts (up to 90\%)\footnote{Discount rates are based on the percentage of students eligible for the National School Lunch Program. See the FCC’s E-Rate discount matrix: \url{https://www.usac.org/wp-content/uploads/e-rate/documents/samples/Discount-Matrix.pdf}.} leading to self-selection for funding.  
 
-\textbf{Empirical Design.} Following the Difference-in-Discontinuities approach developed by \cite{grembiFiscalRulesMatter2016}, this study estimates the 2014 E-Rate reform’s impact on rural Appalachian counties from 2010–2019. The design compares counties just above and below FCC discount cutoffs (e.g., 75\% NSLP eligibility) before and after the reform. This approach should mitigate selection concerns by isolating variation due to rule-based thresholds rather than endogenous county characteristics, while flexibly controlling for the running variable. The estimation equation would take the general form:
-\[Y_{it} = \beta_0 + \beta_1 \text{AboveCutoff}_i + \beta_2 \text{Post2014}_t + \beta_3 (\text{AboveCutoff}_i \times \text{Post2014}_t)  + \mu_i + \tau_t + \epsilon_{it},\]
-where $Y_{it}$ = graduation rates, college enrollment, or earnings; $\text{AboveCutoff}_i$ = 1 if county $i$ exceeds a discount threshold (e.g., 75\% NSLP eligibility); $\text{Post2014}_t$ = 1 for years 2015+; and $\mu_i$, $\tau_t$ = county and year fixed effects. This design captures local causal effects by comparing near-threshold counties over time, while differencing out unobserved county characteristics and common shocks. 
+\textbf{Empirical Design.} This study applies the Difference-in-Discontinuities (DiDisc) approach of \citet{grembiFiscalRulesMatter2016}, which compares the discontinuity in outcomes at the FCC discount threshold before and after the 2014 reform. Unlike a standard difference-in-differences model, DiDisc identifies the change in the RD jump across time, differencing out time-invariant selection and allowing flexible trends on either side of the cutoff. The general specification is:
+\[
+Y_{it} = \beta_0 + \beta_1 \text{Post}_t + \beta_2 \text{Above}_i + \beta_3 (\text{Post}_t \times \text{Above}_i) 
++ f(X_{it}) + f(X_{it}) \cdot \text{Post}_t + f(X_{it}) \cdot \text{Above}_i 
++ \mu_i + \tau_t + \epsilon_{it},
+\]
+where $Y_{it}$ is graduation, college enrollment, or earnings; $\text{Post}_t$ indicates post-2014 years; $\text{Above}_i$ marks counties above the cutoff (e.g., 75\% NSLP eligibility); and $X_{it}$ is the running variable. The flexible functions $f(X_{it})$ (e.g., local linear or polynomial) capture heterogeneous trends across time and sides of the cutoff. The coefficient of interest, $\beta_3$, measures the difference in discontinuities, while county and year fixed effects $\mu_i$ and $\tau_t$ absorb time-invariant characteristics and common shocks. 
 
 \textbf{Data.} County-year observations from 2010–2019, supporting DiD with pre- and post-modernization periods. E-Rate funding (USAC, 2010–2019), graduation rates (NCES CCD), college enrollment (ACS 5-year estimates), earnings (Opportunity Atlas), and ARC county data. Focus is on the 116 counties below 80\% broadband, consistent with low-connectivity emphasis in the framework. Key measures include E-Rate funding (\$ per pupil), graduation rates, college enrollment, earnings, and controls (poverty, teacher ratio).
 \bibliographystyle{chicago}
 \bibliography{Bibliography}
+
+
 
 \end{document}
 
