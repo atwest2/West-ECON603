@@ -1,0 +1,28 @@
+\input{preamble}
+% Title
+\begin{document}
+\begin{singlespace}
+\title{Proposal 3}
+\author{Austyn West\thanks{Department of Economics, Texas A\&M University.}}
+\date{October 30, 2025}
+\maketitle
+\end{singlespace}
+
+\textbf{Research Question.} The 2014 E-Rate Modernization Order increased the program cap from \$2.4 billion to \$3.9 billion, prioritized high-speed broadband (Category 1), and introduced per-student budgets for internal Wi-Fi (Category 2) while reducing the maximum Category 2 subsidy rate from 90\% to 85\%. E-Rate discounts are set at the district level based on the share of students eligible for the National School Lunch Program (NSLP), with major thresholds at 1\%, 20\%, 35\%, 50\%, and 75\%. This proposal asks: What is the causal effect of the 2014 reform on educational outcomes in Texas public schools, including test scores, SAT/ACT participation, dropout rates, and college readiness?
+
+\textbf{Literature Review.} Prior work shows mixed effects of broadband on education. \citet{hazlett2019} found no E-Rate impact on SAT scores in North Carolina (2000–2013), reflecting pre-reform emphasis on basic connectivity. \citet{dettling2015} estimated small gains (0.7 SAT points) from broadband access, while \citet{sanchis2021} linked a one-standard-deviation increase in speed to 0.19 standard deviations higher test scores. Infrastructure matters: \citet{park2020} showed that a one-degree hotter school year reduces learning by 1\%, and \citet{wanke2024} attributed 30–40\% of performance variance to school infrastructure and teacher capital. The digital divide persists, with rural and high-poverty areas lagging in speed and access \citep{gallardo2024}. This study evaluates post-2014 E-Rate reforms, exploiting enhanced funding and speed to identify causal impacts in high-poverty Texas districts.
+
+
+\textbf{Empirical Design.} This study applies the Difference-in-Discontinuities (DiDisc) framework of \citet{grembi2016}, combining regression discontinuity in NSLP eligibility with the 2014 reform timing. For each cutoff $c$, the specification is
+\begin{align*}
+Y_{ist} &= \beta_{0c} + \beta_{1c}\text{Post}_t + \beta_{2c}\text{Above}_{ic} + \beta_{3c}(\text{Post}_t \times \text{Above}_{ic})\\
+&+ f_c(X_{it}) + f_c(X_{it})\cdot \text{Post}_t + f_c(X_{it})\cdot \text{Above}_{ic} + \mu_s + \tau_t + \varepsilon_{ist},
+\end{align*}
+where $Y_{ist}$ is the outcome for school $s$ in district $i$ and year $t$ (e.g., share meeting grade-level standards); $\text{Post}_t = 1$ for 2015–16 onward; $\text{Above}_{ic} = 1$ if district NSLP share exceeds cutoff $c$; and $X_{it}$ is normalized distance from $c$. Local linear or polynomial functions $f_c(\cdot)$ allow flexible trends; school fixed effects $\mu_s$ and year fixed effects $\tau_t$ control for unobserved heterogeneity. The coefficient $\beta_{3c}$ identifies the reform-induced change in the outcome discontinuity at cutoff $c$. Baseline analysis focuses on the 75\% threshold; robustness checks examine 20\%, 35\%, and 50\%. Estimation uses optimal bandwidths \citep{calonico2014} with district-clustered standard errors. Validity relies on pre-reform continuity, parallel trends, and no manipulation (tested via \citealp{mccrary2008} density tests).
+
+\textbf{Data.} School-year panel (2012–13 to 2018–19) from Texas Academic Performance Reports (TAPR) and E-Rate records (USAC Forms 472/474). TAPR provides STAAR performance (grades 5/8 Reading \& Math), SAT/ACT metrics, attendance, dropouts, and college readiness. E-Rate data detail requests, approvals, discounts, and disbursements by category. Sample excludes schools with <105 students, alternative/charter campuses, and those missing TAPR in any year. Pre-reform years (2012–13 to 2014–15) enable trend validation; FOIA request will secure pre-2016 E-Rate approvals.
+
+\newpage
+\bibliographystyle{chicago}
+\bibliography{Bibliography}
+\end{document}
