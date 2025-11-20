@@ -5,7 +5,7 @@
 \begin{singlespace}
 \title{Data Section}
 \author{Austyn West\thanks{Department of Economics, Texas A\&M University.}}
-\date{October 30, 2025}
+\date{\today}
 \maketitle
 \end{singlespace}
 
@@ -23,6 +23,8 @@ Y_{ist}
 &\quad + \mu_s + \tau_t + \varepsilon_{ist}.
 \label{eq:didisc}
 \end{align}
+
+\noindent \textbf{[JLG: Seems like a great first approach.]} 
 
 \textbf{Variable Definitions.} Here, $Y_{ist}$ denotes the outcome of interest such as the share of students meeting grade-level standards, SAT/ACT participation, dropout rates, or college readiness for school $s$ in district $i$ and year $t$. The first modernized funding year began disbursements in July 2015, corresponding to the 2015--16 school year; thus, $\text{Post}_t=1$ for 2015--16 onward, reflecting the first full academic year after the reform. Pre-reform years provide three years of pre-trends. The running variable $X_{it}$ measures the normalized distance of a district’s NSLP percentage from cutoff $c$. The function $f_c(X_{it})$ flexibly captures local trends around each threshold using local linear or low-order polynomial functions. School fixed effects $\mu_s$ control for time-invariant heterogeneity, and year fixed effects $\tau_t$ absorb common shocks. The coefficient $\beta_{3c}$ measures the Difference-in-Discontinuities estimate at cutoff $c$, representing the change in the outcome discontinuity at that threshold between the pre- and post-reform periods.
 
