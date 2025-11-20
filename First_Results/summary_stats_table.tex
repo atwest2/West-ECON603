@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+\centering
+\caption{Summary Statistics for E-Rate Funding Requests}
+\label{tab:erate_summary_stats}
+\begin{threeparttable}
+\begin{tabular}{ l c c c c }
+\toprule
+& \textbf{Mean} & \textbf{Std. Dev.} & \textbf{25th pct.} & \textbf{75th pct.} \\
+& (1) & (2) & (3) & (4) \\
+\midrule
+\multicolumn{5}{l}{\underline{\textbf{Panel a. Financial Amounts}}} \\ \\
+\hspace{2mm} \textbf{\textit{Requested Invoice Amount}} & 11,902 & 90,203 & 480 & 4,580 \\
+\hspace{2mm} \textbf{\textit{Approved Invoice Amount}} & 10,081 & 74,060 & 275.230 & 3,868 \\
+\hspace{2mm} \textbf{\textit{Log Requested Amount}} & 7.310 & 2.083 & 6.186 & 8.431 \\
+\hspace{2mm} \textbf{\textit{Discount Rate}} & 70.644 & 20.355 & 60 & 85 \\ \\
+\\ \\
+\multicolumn{5}{l}{\underline{\textbf{Panel b. Flags and Status}}} \\
+\hspace{2mm} \textbf{\textit{Funded Flag}} & 0.918 & 0.274 & & \\
+\hspace{2mm} \textbf{\textit{Negative Requested Amount Flag}} & 0.003 & 0.056 & & \\
+\hspace{2mm} \textbf{\textit{Reimbursement Flag}} & 0.097 & 0.295 & & \\
+\hspace{2mm} \textbf{\textit{Funded with Comment}} & 0.017 & 0.128 & & \\
+\bottomrule
+\end{tabular}
+\footnotesize
+\textit{Notes:} This table reports summary statistics for E-Rate funding requests submitted by public school districts in Texas. Amount Requested refers to the total pre-discount funding amount submitted on Form 471. Approved Amount is the total amount approved for reimbursement. Log Total Amount is the natural logarithm of the requested amount after removing zero or negative values. Discount Rate is the applicant's E-Rate discount percentage based on the percentage of students on the National School Lunch Program in the district. Binary indicator variables are defined as follows: Funded Flag equals 1 if any portion of the request was approved; Negative Amount Flag equals 1 for filings with nonpositive or invalid pre-discount amounts; Reimbursement Flag equals 1 if the request includes a reimbursement decision code; and Funded with Comment equals 1 for requests that were both funded and accompanied by a reimbursement decision code. Percentile columns reflect the empirical 25th and 75th percentiles of each distribution.
+\end{threeparttable}
+\end{table}

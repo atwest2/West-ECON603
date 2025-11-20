@@ -1,0 +1,42 @@
+\input{preamble}
+\usepackage{graphicx}
+
+% Title
+\begin{document}
+\begin{singlespace}
+\title{First Results}
+\author{Austyn West\thanks{Department of Economics, Texas A\&M University.}}
+\date{November 20, 2025}
+\maketitle
+\end{singlespace}
+
+\section*{Descriptive Statistics}
+
+
+\input{summary_stats_table}
+
+Table~\ref{tab:erate_summary_stats} presents summary statistics for E-Rate funding requests submitted by Texas public school districts. Panel~A reports continuous financial measures, including requested amounts, approved amounts, and discount rates, while Panel~B summarizes binary indicators of application status.
+
+In Panel~A, the distribution of requested amounts exhibits substantial right-skewness. The mean request is \$11,902, but the 75th percentile is only \$4,580, indicating that the mean is heavily influenced by a small number of large requests. This skewness motivates the use of logarithmic transformations in subsequent analyses, where the log requested amount has a more symmetric distribution with mean 7.31 (SD 2.08). The substantial right-skewness of the requested amounts is visually confirmed in Figure~\ref{fig:log_density}, which plots the density of the natural logarithm of requested amounts. While the raw dollar amounts are heavily skewed, the log-transformed variable approximates a symmetric, bell-shaped distribution, validating the use of logarithmic transformations in our multivariate analyses. This transformation helps mitigate the influence of extreme outliers and meets the distributional assumptions of standard regression techniques.
+
+Approved amounts follow a similar pattern, with mean \$10,081 (SD \$74,060), suggesting modest adjustments during the review process. The discount rate distribution shows meaningful variation across districts, ranging from 60\% at the 25th percentile to 85\% at the 75th percentile around a mean of 70.6\%, reflecting the program's design where discounts are tied to the percentage of students eligible for the National School Lunch Program.
+
+Panel~B reveals that most funding requests are successful, with 91.8\% receiving at least partial approval. Only 0.3\% of requests have nonpositive amounts, suggesting high data quality. The reimbursement flag (9.7\%) and funded with comment flag (1.7\%) indicate that while most applications are processed routinely, a nontrivial minority require additional administrative review.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Log_Amount_Requested_Density.pdf}
+    \caption{Distribution of the Log-Transformed Total Amount Requested}
+    \label{fig:log_density}
+    \begin{minipage}{0.8\linewidth}
+        \footnotesize
+        \textit{Note:} This figure displays the frequency distribution of the natural logarithm of total funding amounts requested by Texas school districts in their E-Rate applications. The distribution is approximately normal, centered around a log value of 5-10, with a positive skew indicating a minority of applications requested substantially larger amounts. The log transformation reveals the underlying shape of the data, which would be heavily right-skewed in its original dollar-scale form.
+    \end{minipage}
+\end{figure}
+
+
+These summary statistics reflect the underlying economics and administration of the E-Rate program. The heavy-tailed distribution of requested amounts likely stems from the large fixed costs associated with network infrastructure, which generates a few very large requests from districts undertaking major upgrades, alongside many smaller requests for recurring services. The high approval rate is consistent with the program's goal of universal service support, where applications are pre-screened for eligibility, and the detailed discount matrix reduces ambiguity in funding levels. The variation in discount rates directly mirrors the socioeconomic disparities between districts, as it is mechanically determined by the percentage of students eligible for free or reduced-price lunches.
+
+These patterns have several implications for our empirical strategy. First, the heavy-tailed distribution of financial amounts suggests that median regressions (quantile regression) or parametric models using logarithmic transformations may be more appropriate than linear models using levels. Second, the high approval rate limits useful variation for studying a binary approval outcome, shifting focus to the continuous variation in approval amounts as a primary dependent variable. Third, the systematic variation in discount rates, which is quasi-exogenous as it is tied to a district's socioeconomic profile, provides a potential instrumental variable or a source of conditional randomness for identifying causal effects. The descriptive evidence thus supports modeling approaches that account for the program's institutional features and the distributional characteristics of the key variables.
+
+\end{document}
