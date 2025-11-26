@@ -27,14 +27,14 @@ gen reimbursement_flag  = (reimbursementrequestdecisioncode != "")
 gen funded_with_comment = reimbursement_flag & funded_flag
 
 * Get variable statistics and store in matrices
-local financial_vars totalrequestedinvoice_num totalapprovedinvoice_num log_total
-local flag_vars discountrate funded_flag neg_amount_flag reimbursement_flag funded_with_comment
+local financial_vars totalrequestedinvoice_num totalapprovedinvoice_num log_total discountrate
+local flag_vars funded_flag neg_amount_flag reimbursement_flag funded_with_comment
 
-* Matrix for financial variables (mean, sd, p25, p50, p75)
-matrix desc_financial = J(3, 4, .)
+* Matrix for financial variables (mean, sd, p25, p75)
+matrix desc_financial = J(4, 4, .)
 
 * Matrix for flag variables (mean, sd only)
-matrix desc_flags = J(5, 2, .)
+matrix desc_flags = J(4, 2, .)
 
 * Financial variables: mean, sd, p25, p50, p75
 local i = 1
@@ -63,14 +63,13 @@ set obs 30
 gen n = _n
 
 * Create the data values
-forvalues j = 1/5 {
+forvalues j = 1/4 {
     gen desc_financial`j' = .
 }
 forvalues j = 1/2 {
     gen desc_flags`j' = .
 }
 
-* CORRECTED: Fill in financial data from matrix (rows 12-14)
 * Row 12: totalamount_clean (Requested Invoice Amount)
 replace desc_financial1 = desc_financial[1, 1] if n == 12
 replace desc_financial2 = desc_financial[1, 2] if n == 12
@@ -89,29 +88,31 @@ replace desc_financial2 = desc_financial[3, 2] if n == 14
 replace desc_financial3 = desc_financial[3, 3] if n == 14
 replace desc_financial4 = desc_financial[3, 4] if n == 14
 
-* CORRECTED: Fill in flag data from matrix (rows 17-21)
-* Row 17: discountrate
-replace desc_flags1 = desc_flags[1, 1] if n == 17
-replace desc_flags2 = desc_flags[1, 2] if n == 17
+* Row 14: Discount Rate
+replace desc_financial1 = desc_financial[4, 1] if n == 15
+replace desc_financial2 = desc_financial[4, 2] if n == 15
+replace desc_financial3 = desc_financial[4, 3] if n == 15
+replace desc_financial4 = desc_financial[4, 4] if n == 15
+
 
 * Row 18: funded_flag
-replace desc_flags1 = desc_flags[2, 1] if n == 18
-replace desc_flags2 = desc_flags[2, 2] if n == 18
+replace desc_flags1 = desc_flags[1, 1] if n == 18
+replace desc_flags2 = desc_flags[1, 2] if n == 18
 
 * Row 19: neg_amount_flag
-replace desc_flags1 = desc_flags[3, 1] if n == 19
-replace desc_flags2 = desc_flags[3, 2] if n == 19
+replace desc_flags1 = desc_flags[2, 1] if n == 19
+replace desc_flags2 = desc_flags[2, 2] if n == 19
 
 * Row 20: reimbursement_flag
-replace desc_flags1 = desc_flags[4, 1] if n == 20
-replace desc_flags2 = desc_flags[4, 2] if n == 20
+replace desc_flags1 = desc_flags[3, 1] if n == 20
+replace desc_flags2 = desc_flags[3, 2] if n == 20
 
 * Row 21: funded_with_comment
-replace desc_flags1 = desc_flags[5, 1] if n == 21
-replace desc_flags2 = desc_flags[5, 2] if n == 21
+replace desc_flags1 = desc_flags[4, 1] if n == 21
+replace desc_flags2 = desc_flags[4, 2] if n == 21
 
 * Format numbers
-foreach j of numlist 1/5 {
+foreach j of numlist 1/4 {
     replace desc_financial`j' = round(desc_financial`j', 0.001)
     gen desc_financial`j'_str = ""
     replace desc_financial`j'_str = string(desc_financial`j', "%12.0fc") if desc_financial`j' > 1000
@@ -184,17 +185,17 @@ replace all1and = " & " + desc_financial2_str if n == 14
 replace all2and = " & " + desc_financial3_str if n == 14
 replace all3and = " & " + desc_financial4_str if n == 14
 
-replace all1_0 = " " if n == 15
+* Flag variables
+replace all1_0 = "   \hspace{2mm} \textbf{\textit{Discount Rate}}" if n == 15
+replace all0and = " & " + desc_financial1_str if n == 15
+replace all1and = " & " + desc_financial2_str if n == 15
+replace all2and = " & " + desc_financial3_str if n == 15
+replace all3and = " & " + desc_financial4_str if n == 15
+
+replace all1_0 = " " if n == 16
 
 * -------- Panel b: Flags and Status --------
-replace all1_0 = "\multicolumn{5}{l}{\underline{\textbf{Panel b. Flags and Status}}}" if n == 16
-
-* Flag variables
-replace all1_0 = "   \hspace{2mm} \textbf{\textit{Discount Rate}}" if n == 17
-replace all0and = " & " + desc_flags1_str if n == 17
-replace all1and = " & " + desc_flags2_str if n == 17
-replace all2and = " & " if n == 17
-replace all3and = " & " if n == 17
+replace all1_0 = "\multicolumn{5}{l}{\underline{\textbf{Panel b. Flags and Status}}}" if n == 17
 
 replace all1_0 = "   \hspace{2mm} \textbf{\textit{Funded Flag}}" if n == 18
 replace all0and = " & " + desc_flags1_str if n == 18
@@ -226,7 +227,7 @@ replace all1_0 = "\end{tabular}" if n == 23
 
 * -------- threeparttable Footnote --------
 replace all1_0 = "\footnotesize" if n == 24
-replace all1_0 = "\textit{Notes:} This table reports summary statistics for E-Rate funding requests submitted by public school districts in Texas. Amount Requested refers to the total pre-discount funding amount submitted on Form 471. Approved Amount is the total amount approved for reimbursement. Log Total Amount is the natural logarithm of the requested amount after removing zero or negative values. Discount Rate is the applicant's E-Rate discount percentage based on the percentage of students on the National School Lunch Program in the district. Binary indicator variables are defined as follows: Funded Flag equals 1 if any portion of the request was approved; Negative Amount Flag equals 1 for filings with nonpositive or invalid pre-discount amounts; Reimbursement Flag equals 1 if the request includes a reimbursement decision code; and Funded with Comment equals 1 for requests that were both funded and accompanied by a reimbursement decision code. Percentile columns reflect the empirical 25th, 50th (median), and 75th percentiles of each distribution." if n == 25
+replace all1_0 = "\textit{Notes:} This table reports summary statistics for E-Rate funding requests submitted by public school districts in Texas. Amount Requested refers to the total pre-discount funding amount submitted on Form 471. Approved Amount is the total amount approved for reimbursement. Log Total Amount is the natural logarithm of the requested amount after removing zero or negative values. Discount Rate is the applicant's E-Rate discount percentage based on the percentage of students on the National School Lunch Program in the district. Binary indicator variables are defined as follows: Funded Flag equals 1 if any portion of the request was approved; Negative Amount Flag equals 1 for filings with nonpositive or invalid pre-discount amounts; Reimbursement Flag equals 1 if the request includes a reimbursement decision code; and Funded with Comment equals 1 for requests that were both funded and accompanied by a reimbursement decision code. Percentile columns reflect the empirical 25th and 75th percentiles of each distribution." if n == 25
 replace all1_0 = "\end{threeparttable}" if n == 26
 replace all1_0 = "\end{table}" if n == 27
 
